@@ -1,7 +1,14 @@
+import Header from "./Header";
+import Footer from "./Footer";
+
 export default function Home() {
   return (
-    <div className="text-amber-700">
-      This is the home page! The text is styled with Tailwind CSS
-    </div>
+    <>
+      <div className="flex flex-col min-h-screen">
+        <Header />
+        <main className="flex-grow">{/* page content goes here */}</main>
+        <Footer />
+      </div>
+    </>
   );
 }
