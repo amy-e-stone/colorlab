@@ -2,7 +2,7 @@ export default function Logo({ height = 40 }) {
   return (
     <div className="flex items-center" style={{ height }}>
       <div
-        className="border-2 border-black rounded-md overflow-hidden"
+        className="rounded-md overflow-hidden"
         style={{ height: "100%", width: height * 1.5 }}
       >
         <div className="grid grid-cols-4 h-full">
