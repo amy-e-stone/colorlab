@@ -1,9 +1,13 @@
-/* Code gotten from https://uiwjs.github.io/react-color/#/wheel */
+/* Base code gotten from https://uiwjs.github.io/react-color/#/wheel */
 
 import React, { useState, Fragment } from "react";
 import Wheel from "@uiw/react-color-wheel";
 import ShadeSlider from "@uiw/react-color-shade-slider";
-import { hsvaToHex } from "@uiw/color-convert";
+import {
+  hsvaToHex,
+  hsvaToRgba,
+  hsvaToHsla
+} from "@uiw/color-convert";
 
 function Demo() {
   const [hsva, setHsva] = useState({ h: 214, s: 43, v: 90, a: 1 });
@@ -26,6 +30,7 @@ function Demo() {
             setHsva({ ...hsva, ...newShade });
           }}
         />
+        {/* Color display */}
         <div
           className="mb-10"
           style={{
@@ -35,6 +40,29 @@ function Demo() {
             background: hsvaToHex(hsva),
           }}
         ></div>
+        {/* Color values display */}
+        <div className="mt-4 text-left text-sm">
+          <p>
+            <strong>HEX:</strong> {hsvaToHex(hsva).toUpperCase()}
+          </p>
+          <p>
+            <strong>RGB:</strong>{" "}
+            {(() => {
+              const { r, g, b } = hsvaToRgba(hsva);
+              return `${r}, ${g}, ${b}`;
+            })()}
+          </p>
+          <p>
+            <strong>HSL:</strong>{" "}
+            {(() => {
+              const { h, s, l } = hsvaToHsla(hsva);
+              const hsl = `${Math.round(h)}, ${s.toFixed(0)}%, ${l.toFixed(
+                0
+              )}%`;
+              return hsl;
+            })()}
+          </p>
+        </div>
       </div>
     </Fragment>
   );
