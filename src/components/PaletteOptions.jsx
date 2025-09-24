@@ -1,3 +1,5 @@
+import Button from "./Button";
+
 export default function PaletteOptions() {
   return (
     <>
@@ -61,9 +63,7 @@ export default function PaletteOptions() {
           </div>
         </div>
         <div className="mt-5">
-          <button className="w-24 py-1 bg-[#7209b7] text-gray-100 font-semibold rounded-full duration-300 hover:bg-[#4361ee] cursor-pointer">
-            Generate
-          </button>
+          <Button buttontext="Generate" />
         </div>
       </div>
     </>
