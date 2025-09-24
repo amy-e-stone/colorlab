@@ -1,20 +1,38 @@
 /* Base code gotten from https://uiwjs.github.io/react-color/#/wheel */
 
-import React, { useState, Fragment } from "react";
+import { useState, Fragment } from "react";
 import Wheel from "@uiw/react-color-wheel";
 import ShadeSlider from "@uiw/react-color-shade-slider";
 import {
   hsvaToHex,
   hsvaToRgba,
-  hsvaToHsla
+  hsvaToHsla,
+  hexToHsva,
 } from "@uiw/color-convert";
 
 function Demo() {
-  const [hsva, setHsva] = useState({ h: 214, s: 43, v: 90, a: 1 });
+  const [hsva, setHsva] = useState({ h: 214, s: 43, v: 90 });
   return (
     <Fragment>
       <div className="w-fit mx-auto text-center">
         <h1 className="text-2xl mb-10 mt-10">Pick a color to get started!</h1>
+
+        {/* HEX user input */}
+        <input
+          name="hex"
+          type="text"
+          className="border px-2 py-1 mb-4"
+          placeholder="#000000"
+          onChange={(event) => {
+            const val = event.target.value;
+            if (/^#?[0-9A-Fa-f]{6}$/.test(val)) {
+              const hex = val.startsWith("#") ? val : `#${val}`;
+              const newHsva = hexToHsva(hex);
+              setHsva(newHsva);
+            }
+          }}
+        />
+
         <Wheel
           className="cursor-pointer"
           width={360}
