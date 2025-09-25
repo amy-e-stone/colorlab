@@ -12,7 +12,7 @@ import {
   hslaToHsva,
 } from "@uiw/color-convert";
 
-function Demo() {
+function ColorPicker() {
   const [hsva, setHsva] = useState({ h: 214, s: 43, v: 90 });
   return (
     <Fragment>
@@ -148,4 +148,4 @@ function Demo() {
   );
 }
 
-export default Demo;
+export default ColorPicker;
