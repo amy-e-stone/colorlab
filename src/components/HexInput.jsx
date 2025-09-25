@@ -1,3 +1,5 @@
+/* See documentation https://uiwjs.github.io/react-color/#/convert */
+
 import { hexToHsva } from "@uiw/color-convert";
 
 export default function HexInput({ setHsva }) {

@@ -1,3 +1,5 @@
+/* See documentation https://uiwjs.github.io/react-color/#/convert */
+
 import { hsvaToHex, hsvaToRgba, hsvaToHsla } from "@uiw/color-convert";
 
 export default function ColorDisplay({ hsva }) {
