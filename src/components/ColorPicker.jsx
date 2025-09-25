@@ -8,12 +8,14 @@ import RgbInput from "./RgbInput";
 import HslInput from "./HslInput";
 import ColorDisplay from "./ColorDisplay";
 import ColorValueDisplay from "./ColorValueDisplay";
+import Card from "./Card";
 
 function ColorPicker() {
   const [hsva, setHsva] = useState({ h: 214, s: 43, v: 90 });
   return (
     <Fragment>
-      <div className="w-fit mx-auto text-center">
+      <Card>
+        <div className="w-fit mx-auto text-center">
         <h1 className="text-2xl mb-10 mt-10">Pick a color to get started!</h1>
         <HexInput setHsva={setHsva} />
         <RgbInput setHsva={setHsva} />
@@ -36,6 +38,7 @@ function ColorPicker() {
         <ColorDisplay hsva={hsva} />
         <ColorValueDisplay hsva={hsva} />
       </div>
+      </Card>
     </Fragment>
   );
 }
