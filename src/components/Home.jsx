@@ -7,6 +7,7 @@ import PaletteOptions from "./PaletteOptions";
 export default function Home() {
   const [hsva, setHsva] = useState({ h: 214, s: 43, v: 90 });
   const [selectedOption, setSelectedOption] = useState("");
+  const [generatedColors, setGeneratedColors] = useState([]);
 
   return (
     <Fragment>
@@ -19,6 +20,8 @@ export default function Home() {
               hsva={hsva}
               selectedOption={selectedOption}
               setSelectedOption={setSelectedOption}
+              generatedColors={generatedColors}
+              setGeneratedColors={setGeneratedColors}
             />
           </div>
         </main>

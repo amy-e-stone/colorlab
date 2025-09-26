@@ -1,13 +1,16 @@
+import { Fragment } from "react";
+import { generatePalette } from "./utils";
 import Button from "./Button";
 import Card from "./Card";
 import ColorPalette from "./ColorPalette";
-import { Fragment } from "react";
 import Option from "./Option";
 
 export default function PaletteOptions({
   hsva,
   selectedOption,
   setSelectedOption,
+  generatedColors,
+  setGeneratedColors,
 }) {
   return (
     <Fragment>
@@ -59,10 +62,17 @@ export default function PaletteOptions({
             />
           </div>
           <div className="mt-5">
-            <Button buttontext="Generate" />
+            <Button
+              buttontext="Generate"
+              onClick={() => {
+                const baseColor = hsva;
+                const palette = generatePalette(baseColor, selectedOption);
+                setGeneratedColors(palette);
+              }}
+            />
           </div>
           <div className="mt-5">
-            <ColorPalette />
+            <ColorPalette colors={generatedColors} />
           </div>
         </div>
       </Card>
