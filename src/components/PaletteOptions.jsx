@@ -2,6 +2,7 @@ import Button from "./Button";
 import Card from "./Card";
 import ColorPalette from "./ColorPalette";
 import { Fragment } from "react";
+import Option from "./Option";
 
 export default function PaletteOptions() {
   return (
@@ -10,61 +11,25 @@ export default function PaletteOptions() {
         <div className="w-fit mx-auto text-center">
           <h1 className="text-2xl mb-8 mt-10">Choose a palette option ...</h1>
           <div className="text-left space-y-1">
-            <div
-              role="button"
-              className="cursor-pointer rounded-lg hover:bg-gray-100 transition-colors p-1"
-            >
-              <p className="font-medium text-gray-800">Monochromatic</p>
-              <p className="text-gray-600">
-                One hue with varying shades, tints, and tones
-              </p>
-            </div>
-            <div
-              role="button"
-              className="cursor-pointer rounded-lg hover:bg-gray-100 transition-colors p-1"
-            >
-              <p className="font-medium text-gray-800">Analogous</p>
-              <p className="text-gray-600">
-                Colors next to each other on the wheel
-              </p>
-            </div>
-            <div
-              role="button"
-              className="cursor-pointer rounded-lg hover:bg-gray-100 transition-colors p-1"
-            >
-              <p className="font-medium text-gray-800">Complementary</p>
-              <p className="text-gray-600">Opposite colors on the wheel</p>
-            </div>
-            <div
-              role="button"
-              className="cursor-pointer rounded-lg hover:bg-gray-100 transition-colors p-1"
-            >
-              <p className="font-medium text-gray-800">Split Complementary</p>
-              <p className="text-gray-600">
-                Base color plus two adjacent to its complement
-              </p>
-            </div>
-            <div
-              role="button"
-              className="cursor-pointer rounded-lg hover:bg-gray-100 transition-colors p-1"
-            >
-              <p className="font-medium text-gray-800">Triadic</p>
-              <p className="text-gray-600">Three evenly spaced colors</p>
-            </div>
-            <div
-              role="button"
-              className="cursor-pointer rounded-lg hover:bg-gray-100 transition-colors p-1"
-            >
-              <p className="font-medium text-gray-800">Tetradic</p>
-              <p className="text-gray-600">Two complementary pairs</p>
-            </div>
-            <div
-              role="button"
-              className="cursor-pointer rounded-lg hover:bg-gray-100 transition-colors p-1"
-            >
-              <p className="font-medium text-gray-800">Square</p>
-              <p className="text-gray-600">Four evenly spaced colors</p>
-            </div>
+            <Option
+              title="Monochromatic"
+              description="One hue with varying shades, tints, and tones"
+            />
+            <Option
+              title="Analogous"
+              description="Colors next to each other on the wheel"
+            />
+            <Option
+              title="Complementary"
+              description="Opposite colors on the wheel"
+            />
+            <Option
+              title="Split Complementary"
+              description="Base color plus two adjacent to its complement"
+            />
+            <Option title="Triadic" description="Three evenly spaced colors" />
+            <Option title="Tetradic" description="Two complementary pairs" />
+            <Option title="Square" description="Four evenly spaced colors" />
           </div>
           <div className="mt-5">
             <Button buttontext="Generate" />
