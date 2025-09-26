@@ -4,7 +4,11 @@ import ColorPalette from "./ColorPalette";
 import { Fragment } from "react";
 import Option from "./Option";
 
-export default function PaletteOptions() {
+export default function PaletteOptions({
+  hsva,
+  selectedOption,
+  setSelectedOption,
+}) {
   return (
     <Fragment>
       <Card>
@@ -14,22 +18,45 @@ export default function PaletteOptions() {
             <Option
               title="Monochromatic"
               description="One hue with varying shades, tints, and tones"
+              isSelected={selectedOption === "Monochromatic"}
+              onClick={() => setSelectedOption("Monochromatic")}
             />
             <Option
               title="Analogous"
               description="Colors next to each other on the wheel"
+              isSelected={selectedOption === "Analogous"}
+              onClick={() => setSelectedOption("Analogous")}
             />
             <Option
               title="Complementary"
               description="Opposite colors on the wheel"
+              isSelected={selectedOption === "Complementary"}
+              onClick={() => setSelectedOption("Complementary")}
             />
             <Option
               title="Split Complementary"
               description="Base color plus two adjacent to its complement"
+              isSelected={selectedOption === "Split Complementary"}
+              onClick={() => setSelectedOption("Split Complementary")}
             />
-            <Option title="Triadic" description="Three evenly spaced colors" />
-            <Option title="Tetradic" description="Two complementary pairs" />
-            <Option title="Square" description="Four evenly spaced colors" />
+            <Option
+              title="Triadic"
+              description="Three evenly spaced colors"
+              isSelected={selectedOption === "Triadic"}
+              onClick={() => setSelectedOption("Triadic")}
+            />
+            <Option
+              title="Tetradic"
+              description="Two complementary pairs"
+              isSelected={selectedOption === "Tetradic"}
+              onClick={() => setSelectedOption("Tetradic")}
+            />
+            <Option
+              title="Square"
+              description="Four evenly spaced colors"
+              isSelected={selectedOption === "Square"}
+              onClick={() => setSelectedOption("Square")}
+            />
           </div>
           <div className="mt-5">
             <Button buttontext="Generate" />
