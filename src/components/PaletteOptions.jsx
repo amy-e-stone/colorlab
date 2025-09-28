@@ -1,76 +1,78 @@
+import { Fragment } from "react";
+import { generatePalette } from "./utils";
 import Button from "./Button";
 import Card from "./Card";
 import ColorPalette from "./ColorPalette";
-import { Fragment } from "react";
+import Option from "./Option";
 
-export default function PaletteOptions() {
+export default function PaletteOptions({
+  hsva,
+  selectedOption,
+  setSelectedOption,
+  generatedColors,
+  setGeneratedColors,
+}) {
   return (
     <Fragment>
       <Card>
         <div className="w-fit mx-auto text-center">
           <h1 className="text-2xl mb-8 mt-10">Choose a palette option ...</h1>
           <div className="text-left space-y-1">
-            <div
-              role="button"
-              className="cursor-pointer rounded-lg hover:bg-gray-100 transition-colors p-1"
-            >
-              <p className="font-medium text-gray-800">Monochromatic</p>
-              <p className="text-gray-600">
-                One hue with varying shades, tints, and tones
-              </p>
-            </div>
-            <div
-              role="button"
-              className="cursor-pointer rounded-lg hover:bg-gray-100 transition-colors p-1"
-            >
-              <p className="font-medium text-gray-800">Analogous</p>
-              <p className="text-gray-600">
-                Colors next to each other on the wheel
-              </p>
-            </div>
-            <div
-              role="button"
-              className="cursor-pointer rounded-lg hover:bg-gray-100 transition-colors p-1"
-            >
-              <p className="font-medium text-gray-800">Complementary</p>
-              <p className="text-gray-600">Opposite colors on the wheel</p>
-            </div>
-            <div
-              role="button"
-              className="cursor-pointer rounded-lg hover:bg-gray-100 transition-colors p-1"
-            >
-              <p className="font-medium text-gray-800">Split Complementary</p>
-              <p className="text-gray-600">
-                Base color plus two adjacent to its complement
-              </p>
-            </div>
-            <div
-              role="button"
-              className="cursor-pointer rounded-lg hover:bg-gray-100 transition-colors p-1"
-            >
-              <p className="font-medium text-gray-800">Triadic</p>
-              <p className="text-gray-600">Three evenly spaced colors</p>
-            </div>
-            <div
-              role="button"
-              className="cursor-pointer rounded-lg hover:bg-gray-100 transition-colors p-1"
-            >
-              <p className="font-medium text-gray-800">Tetradic</p>
-              <p className="text-gray-600">Two complementary pairs</p>
-            </div>
-            <div
-              role="button"
-              className="cursor-pointer rounded-lg hover:bg-gray-100 transition-colors p-1"
-            >
-              <p className="font-medium text-gray-800">Square</p>
-              <p className="text-gray-600">Four evenly spaced colors</p>
-            </div>
+            <Option
+              title="Monochromatic"
+              description="One hue with varying shades, tints, and tones"
+              isSelected={selectedOption === "Monochromatic"}
+              onClick={() => setSelectedOption("Monochromatic")}
+            />
+            <Option
+              title="Analogous"
+              description="Colors next to each other on the wheel"
+              isSelected={selectedOption === "Analogous"}
+              onClick={() => setSelectedOption("Analogous")}
+            />
+            <Option
+              title="Complementary"
+              description="Opposite colors on the wheel"
+              isSelected={selectedOption === "Complementary"}
+              onClick={() => setSelectedOption("Complementary")}
+            />
+            <Option
+              title="Split Complementary"
+              description="Base color plus two adjacent to its complement"
+              isSelected={selectedOption === "Split Complementary"}
+              onClick={() => setSelectedOption("Split Complementary")}
+            />
+            <Option
+              title="Triadic"
+              description="Three evenly spaced colors"
+              isSelected={selectedOption === "Triadic"}
+              onClick={() => setSelectedOption("Triadic")}
+            />
+            <Option
+              title="Tetradic"
+              description="Two complementary pairs"
+              isSelected={selectedOption === "Tetradic"}
+              onClick={() => setSelectedOption("Tetradic")}
+            />
+            <Option
+              title="Square"
+              description="Four evenly spaced colors"
+              isSelected={selectedOption === "Square"}
+              onClick={() => setSelectedOption("Square")}
+            />
           </div>
           <div className="mt-5">
-            <Button buttontext="Generate" />
+            <Button
+              buttontext="Generate"
+              onClick={() => {
+                const baseColor = hsva;
+                const palette = generatePalette(baseColor, selectedOption);
+                setGeneratedColors(palette);
+              }}
+            />
           </div>
           <div className="mt-5">
-            <ColorPalette />
+            <ColorPalette colors={generatedColors} />
           </div>
         </div>
       </Card>
