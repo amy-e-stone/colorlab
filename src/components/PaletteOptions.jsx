@@ -59,7 +59,7 @@ export default function PaletteOptions({
             onClick={() => setSelectedOption("Square")}
           />
         </div>
-        <div className="mt-5">
+        <div className="mt-10 mb-10">
           <Button
             buttontext="Generate"
             onClick={() => {
@@ -69,7 +69,7 @@ export default function PaletteOptions({
             }}
           />
         </div>
-        <div className="mt-5">
+        <div className="mt-22">
           <ColorPalette colors={generatedColors} />
         </div>
       </div>
