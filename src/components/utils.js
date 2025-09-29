@@ -69,8 +69,8 @@ export function generatePalette(hsva, option) {
     const h4 = (h + 270) % 360;
     return [
       { h, s, v },
-      { h: h2, s, v },
       { h: h3, s, v },
+      { h: h2, s, v },
       { h: h4, s, v },
     ].map((color) => hsvaToHex(color));
   }
