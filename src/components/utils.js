@@ -13,8 +13,19 @@ export function generatePalette(hsva, option) {
       { h, s, v: 80 },
       { h, s, v: 100 },
     ].map((color) => hsvaToHex(color)); // Convert to hex for color palette on UI
+  
+   // Analogous - Colors next to each other on the wheel
+  } else if (option === "Analogous") {
+    const { h, s, v } = hsva;
+    return [
+      { h: (h + 60) % 360, s, v },
+      { h: (h + 30) % 360, s, v },
+      { h, s, v },
+      { h: (h - 30 + 360) % 360, s, v },
+      { h: (h - 60 + 360) % 360, s, v },
+    ].map((color) => hsvaToHex(color));
   }
-
+  
   // Greyscale default (fallback)
   return ["#aaaaaa", "#bbbbbb", "#cccccc", "#dddddd", "#eeeeee"];
 }
