@@ -41,6 +41,15 @@ export function generatePalette(hsva, option) {
       { h: (h + 150) % 360, s, v },  
       { h: (h - 150 + 360) % 360, s, v },  
     ].map((color) => hsvaToHex(color));
+  
+  // Triadic - Three evenly spaced colors
+  } else if (option === "Triadic") {
+    const { h, s, v } = hsva;
+    return [
+      { h, s, v },
+      { h: (h + 120) % 360, s, v },
+      { h: (h + 240) % 360, s, v },
+    ].map((color) => hsvaToHex(color));
   }
 
   // Greyscale default (fallback)
