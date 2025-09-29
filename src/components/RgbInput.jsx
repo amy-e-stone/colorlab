@@ -4,7 +4,7 @@ import { rgbaToHsva } from "@uiw/color-convert";
 
 export default function RgbInput({ setHsva }) {
   return (
-    <div className="w-[360px] mx-auto">
+    <div className="w-full max-w-xs sm:max-w-sm mx-auto">
       <input
         name="rgb"
         type="text"

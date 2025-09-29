@@ -12,26 +12,30 @@ import Card from "./Card";
 function ColorPicker({ hsva, setHsva }) {
   return (
     <Card>
-      <div className="w-fit mx-auto text-center">
-        <h1 className="text-2xl mb-10 mt-10">Pick a color to get started!</h1>
+      <div className="text-center">
+        <h1 className="text-xl sm:text-2xl mb-6 sm:mb-10 mt-6 sm:mt-10">
+          Pick a color to get started!
+        </h1>
         <HexInput setHsva={setHsva} />
         <RgbInput setHsva={setHsva} />
         <HslInput setHsva={setHsva} />
-        <Wheel
-          className="cursor-pointer"
-          width={360}
-          height={360}
-          color={hsva}
-          onChange={(color) => setHsva({ ...hsva, ...color.hsva })}
-        />
-        <ShadeSlider
-          className="cursor-pointer"
-          hsva={hsva}
-          style={{ width: 360, marginTop: 20 }}
-          onChange={(newShade) => {
-            setHsva({ ...hsva, ...newShade });
-          }}
-        />
+        <div className="mx-auto w-full max-w-[260px] sm:max-w-[320px] md:max-w-[360px]">
+          <Wheel
+            className="cursor-pointer mx-auto"
+            width={260}
+            height={260}
+            color={hsva}
+            onChange={(color) => setHsva({ ...hsva, ...color.hsva })}
+          />
+        </div>
+        <div className="mx-auto w-full max-w-[260px] sm:max-w-[320px] md:max-w-[360px] mt-5">
+          <ShadeSlider
+            className="cursor-pointer"
+            hsva={hsva}
+            style={{ width: "100%" }}
+            onChange={(newShade) => setHsva({ ...hsva, ...newShade })}
+          />
+        </div>
         <ColorDisplay hsva={hsva} />
         <ColorValueDisplay hsva={hsva} />
       </div>

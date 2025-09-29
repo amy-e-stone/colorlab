@@ -4,14 +4,13 @@ import { hsvaToHex } from "@uiw/color-convert";
 
 export default function ColorDisplay({ hsva }) {
   return (
-    <div
-      className="mb-10"
-      style={{
-        width: "360px",
-        height: 200,
-        marginTop: 20,
-        background: hsvaToHex(hsva),
-      }}
-    ></div>
+    <div className="flex justify-center mt-5 mb-10">
+      <div
+        className="w-[260px] sm:w-[320px] md:w-[360px] h-[200px] rounded"
+        style={{
+          background: hsvaToHex(hsva),
+        }}
+      />
+    </div>
   );
 }
