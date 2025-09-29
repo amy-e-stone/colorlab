@@ -24,8 +24,16 @@ export function generatePalette(hsva, option) {
       { h: (h - 30 + 360) % 360, s, v },
       { h: (h - 60 + 360) % 360, s, v },
     ].map((color) => hsvaToHex(color));
-  }
   
+  // Complementary - Opposite colors on the wheel
+  } else if (option === "Complementary") {
+    const { h, s, v } = hsva;
+    return [
+      { h, s, v },
+      { h: (h + 180) % 360, s, v },
+    ].map((color) => hsvaToHex(color));
+  }
+
   // Greyscale default (fallback)
   return ["#aaaaaa", "#bbbbbb", "#cccccc", "#dddddd", "#eeeeee"];
 }
