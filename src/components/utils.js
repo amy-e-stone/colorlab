@@ -14,7 +14,7 @@ export function generatePalette(hsva, option) {
       { h, s, v: 100 },
     ].map((color) => hsvaToHex(color)); // Convert to hex for color palette on UI
   
-   // Analogous - Colors next to each other on the wheel
+  // Analogous - Colors next to each other on the wheel
   } else if (option === "Analogous") {
     const { h, s, v } = hsva;
     return [
@@ -33,7 +33,7 @@ export function generatePalette(hsva, option) {
       { h: (h + 180) % 360, s, v },
     ].map((color) => hsvaToHex(color));
 
-   // Split Complementary - Base color plus two adjacent to its complement
+  // Split Complementary - Base color plus two adjacent to its complement
   } else if (option === "Split Complementary") {
     const { h, s, v } = hsva;
     return [        
@@ -51,7 +51,7 @@ export function generatePalette(hsva, option) {
       { h: (h + 240) % 360, s, v },
     ].map((color) => hsvaToHex(color));
 
-   // Tetradic - Two complementary pairs
+  // Tetradic - Two complementary pairs
   } else if (option === "Tetradic") {
     const { h, s, v } = hsva;
     return [
@@ -59,6 +59,19 @@ export function generatePalette(hsva, option) {
       { h: (h + 180) % 360, s, v },
       { h: (h + 60) % 360, s, v },
       { h: (h + 240) % 360, s, v },
+    ].map((color) => hsvaToHex(color));
+
+  // Square - Four evenly spaced colors
+  } else if (option === "Square") {
+    const { h, s, v } = hsva;
+    const h2 = (h + 90) % 360;
+    const h3 = (h + 180) % 360;
+    const h4 = (h + 270) % 360;
+    return [
+      { h, s, v },
+      { h: h2, s, v },
+      { h: h3, s, v },
+      { h: h4, s, v },
     ].map((color) => hsvaToHex(color));
   }
 
