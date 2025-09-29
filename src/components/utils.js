@@ -50,6 +50,16 @@ export function generatePalette(hsva, option) {
       { h: (h + 120) % 360, s, v },
       { h: (h + 240) % 360, s, v },
     ].map((color) => hsvaToHex(color));
+
+   // Tetradic - Two complementary pairs
+  } else if (option === "Tetradic") {
+    const { h, s, v } = hsva;
+    return [
+      { h, s, v },
+      { h: (h + 180) % 360, s, v },
+      { h: (h + 60) % 360, s, v },
+      { h: (h + 240) % 360, s, v },
+    ].map((color) => hsvaToHex(color));
   }
 
   // Greyscale default (fallback)
