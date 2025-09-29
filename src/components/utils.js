@@ -32,6 +32,15 @@ export function generatePalette(hsva, option) {
       { h, s, v },
       { h: (h + 180) % 360, s, v },
     ].map((color) => hsvaToHex(color));
+
+   // Split Complementary - Base color plus two adjacent to its complement
+  } else if (option === "Split Complementary") {
+    const { h, s, v } = hsva;
+    return [        
+      { h, s, v },          
+      { h: (h + 150) % 360, s, v },  
+      { h: (h - 150 + 360) % 360, s, v },  
+    ].map((color) => hsvaToHex(color));
   }
 
   // Greyscale default (fallback)
