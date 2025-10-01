@@ -22,8 +22,6 @@ function ColorPicker({ hsva, setHsva }) {
         <div className="mx-auto w-full max-w-[260px] sm:max-w-[320px] md:max-w-[360px]">
           <Wheel
             className="cursor-pointer mx-auto"
-            width={260}
-            height={260}
             color={hsva}
             onChange={(color) => setHsva({ ...hsva, ...color.hsva })}
           />
