@@ -14,10 +14,10 @@ export default function PaletteOptions({
   return (
     <Card>
       <div className="text-center">
-        <h1 className="text-xl sm:text-2xl mb-6 sm:mb-8 mt-6 sm:mt-10">
+        <h1 className="mb-6 sm:mb-8 mt-6 sm:mt-10 text-md sm:text-xl">
           Choose a palette option:
         </h1>
-        <div className="text-left space-y-1">
+        <div className="text-left text-sm sm:text-md space-y-1">
           <Option
             title="Monochromatic"
             description="One hue with varying shades, tints, and tones"
@@ -61,7 +61,7 @@ export default function PaletteOptions({
             onClick={() => setSelectedOption("Square")}
           />
         </div>
-        <div className="mt-5">
+        <div className="mt-7">
           <Button
             buttontext="Generate"
             onClick={() => {
@@ -71,7 +71,7 @@ export default function PaletteOptions({
             }}
           />
         </div>
-        <div className="mt-5">
+        <div className="mt-7">
           <ColorPalette colors={generatedColors} />
         </div>
       </div>

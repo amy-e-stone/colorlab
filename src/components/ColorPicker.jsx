@@ -13,7 +13,7 @@ function ColorPicker({ hsva, setHsva }) {
   return (
     <Card>
       <div className="text-center">
-        <h1 className="text-xl sm:text-2xl mb-6 sm:mb-10 mt-6 sm:mt-10">
+        <h1 className="text-sm sm:text-xl mb-6 sm:mb-10 mt-6 sm:mt-10">
           Pick a color to get started!
         </h1>
         <HexInput setHsva={setHsva} />
@@ -26,7 +26,7 @@ function ColorPicker({ hsva, setHsva }) {
             onChange={(color) => setHsva({ ...hsva, ...color.hsva })}
           />
         </div>
-        <div className="mx-auto w-full max-w-[260px] sm:max-w-[320px] md:max-w-[360px] mt-5">
+        <div className="mx-auto w-full max-w-[180px] sm:max-w-[320px] md:max-w-[360px] mt-5">
           <ShadeSlider
             className="cursor-pointer"
             hsva={hsva}

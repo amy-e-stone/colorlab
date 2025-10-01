@@ -7,7 +7,7 @@ export default function Option({ title, description, isSelected, onClick }) {
       }`}
       onClick={onClick}
     >
-      <p className="font-medium text-gray-800">{title}</p>
+      <p className="text-gray-800 font-medium">{title}</p>
       <p className="text-gray-600">{description}</p>
     </div>
   );
