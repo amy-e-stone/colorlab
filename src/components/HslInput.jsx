@@ -8,7 +8,7 @@ export default function HslInput({ setHsva }) {
       <input
         name="hsl"
         type="text"
-        className="border px-2 py-1 mb-4"
+        className="border px-2 py-1 mb-4 text-sm sm:text-base sm:px-3 sm:py-2"
         placeholder="H, S%, L%"
         onChange={(event) => {
           const val = event.target.value;

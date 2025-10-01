@@ -8,7 +8,7 @@ export default function RgbInput({ setHsva }) {
       <input
         name="rgb"
         type="text"
-        className="border px-2 py-1 mb-4"
+        className="border px-2 py-1 mb-4 text-sm sm:text-base sm:px-3 sm:py-2"
         placeholder="R, G, B"
         onChange={(event) => {
           const val = event.target.value;
