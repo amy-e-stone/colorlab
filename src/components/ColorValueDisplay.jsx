@@ -4,19 +4,19 @@ import { hsvaToHex, hsvaToRgba, hsvaToHsla } from "@uiw/color-convert";
 
 export default function ColorDisplay({ hsva }) {
   return (
-    <div className="mt-4 mb-10 text-left text-sm mx-auto w-fit">
+    <div className="mt-4 mb-10 text-gray-800 text-left text-sm mx-auto w-fit">
       <p>
-        <strong>HEX:</strong> {hsvaToHex(hsva).toUpperCase()}
+        <span className="font-medium">HEX:</span> {hsvaToHex(hsva).toUpperCase()}
       </p>
       <p>
-        <strong>RGB:</strong>{" "}
+        <span className="font-medium">RGB:</span>{" "}
         {(() => {
           const { r, g, b } = hsvaToRgba(hsva);
           return `${r}, ${g}, ${b}`;
         })()}
       </p>
       <p>
-        <strong>HSL:</strong>{" "}
+        <span className="font-medium">HSL:</span>{" "}
         {(() => {
           const { h, s, l } = hsvaToHsla(hsva);
           const hsl = `${Math.round(h)}, ${s.toFixed(0)}%, ${l.toFixed(0)}%`;
