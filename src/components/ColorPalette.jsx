@@ -27,7 +27,7 @@ export default function ColorPalette({ colors }) {
       {/* Hex values below */}
       {colors.length > 0 && (
         <div
-          className="grid mt-2 text-[10px] text-center w-full max-w-[400px] lg:text-[14px]"
+          className="grid mt-2 text-[10px] text-center text-gray-800 w-full max-w-[400px] lg:text-[14px]"
           style={{ gridTemplateColumns: `repeat(${colors.length}, 1fr)` }}
         >
           {colors[0] && <p>{colors[0].toUpperCase()}</p>}
