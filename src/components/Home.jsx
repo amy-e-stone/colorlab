@@ -1,6 +1,4 @@
 import { useState } from "react";
-import Header from "./Header";
-import Footer from "./Footer";
 import ColorPicker from "./ColorPicker";
 import PaletteOptions from "./PaletteOptions";
 
@@ -10,7 +8,6 @@ export default function Home() {
   const [generatedColors, setGeneratedColors] = useState([]);
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
       <main className="flex-grow px-4 flex items-center">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 w-full max-w-6xl mx-auto">
           <ColorPicker hsva={hsva} setHsva={setHsva} />
@@ -23,7 +20,6 @@ export default function Home() {
           />
         </div>
       </main>
-      <Footer />
     </div>
   );
 }
