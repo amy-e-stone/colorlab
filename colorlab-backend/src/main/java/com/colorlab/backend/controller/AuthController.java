@@ -4,6 +4,7 @@ import com.colorlab.backend.model.User;
 import com.colorlab.backend.repository.UserRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @RestController
 @RequestMapping("/auth")
@@ -22,6 +23,9 @@ public class AuthController {
             return ResponseEntity.badRequest().body("Username already taken.");
         }
 
+        String hashedPassword = new BCryptPasswordEncoder().encode(user.getPassword());
+        user.setPassword(hashedPassword);
+
         userRepository.save(user);
         return ResponseEntity.ok("User registered successfully.");
     }
@@ -30,7 +34,10 @@ public class AuthController {
     public ResponseEntity<String> login(@RequestBody User user) {
         return userRepository.findByUsername(user.getUsername())
                 .map(existingUser -> {
-                    if (existingUser.getPassword().equals(user.getPassword())) {
+
+                    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+                    if (encoder.matches(user.getPassword(), existingUser.getPassword())) {
                         return ResponseEntity.ok("Login successful.");
                     } else {
                         return ResponseEntity.status(401).body("Invalid password.");
