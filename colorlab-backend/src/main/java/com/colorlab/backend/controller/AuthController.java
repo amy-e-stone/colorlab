@@ -2,6 +2,7 @@ package com.colorlab.backend.controller;
 
 import com.colorlab.backend.model.User;
 import com.colorlab.backend.repository.UserRepository;
+import com.colorlab.backend.util.JwtUtil;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -38,7 +39,10 @@ public class AuthController {
                     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
                     if (encoder.matches(user.getPassword(), existingUser.getPassword())) {
-                        return ResponseEntity.ok("Login successful.");
+
+                        String token = JwtUtil.generateToken(existingUser.getUsername());
+                        return ResponseEntity.ok("Login successful. Token: " + token);
+
                     } else {
                         return ResponseEntity.status(401).body("Invalid password.");
                     }
