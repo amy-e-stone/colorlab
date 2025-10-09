@@ -4,11 +4,13 @@ import com.colorlab.backend.model.Palette;
 import com.colorlab.backend.model.User;
 import com.colorlab.backend.repository.PaletteRepository;
 import com.colorlab.backend.repository.UserRepository;
+import com.colorlab.backend.util.JwtUtil;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/palettes")
@@ -37,5 +39,24 @@ public class PaletteController {
 
         return ResponseEntity.ok(palettes);
     }
+
+    @PostMapping
+    public ResponseEntity<?> createPalette(@RequestBody Palette palette, HttpServletRequest request) {
+        String token = request.getHeader("Authorization");
+        if (token == null || !token.startsWith("Bearer ")) {
+            return ResponseEntity.status(401).body("Missing or invalid token");
+        }
+
+        String username = JwtUtil.validateTokenAndGetUsername(token.substring(7));
+        Optional<User> userOpt = userRepository.findByUsername(username);
+        if (userOpt.isEmpty()) {
+            return ResponseEntity.status(404).body("User not found");
+        }
+
+        palette.setUser(userOpt.get());
+        paletteRepository.save(palette);
+        return ResponseEntity.status(201).body(palette);
+    }
+
 }
 
