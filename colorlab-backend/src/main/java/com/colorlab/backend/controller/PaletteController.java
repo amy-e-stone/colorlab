@@ -5,6 +5,8 @@ import com.colorlab.backend.model.User;
 import com.colorlab.backend.repository.PaletteRepository;
 import com.colorlab.backend.repository.UserRepository;
 import com.colorlab.backend.util.JwtUtil;
+import com.colorlab.backend.dto.PaletteDto;
+import com.colorlab.backend.dto.UserDto;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,16 +27,23 @@ public class PaletteController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Palette>> getUserPalettes() {
+    public ResponseEntity<List<PaletteDto>> getUserPalettes() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userRepository.findByUsername(username).orElse(null);
 
         if (user == null) {
-            return ResponseEntity.status(401).build(); // should not happen
+            return ResponseEntity.status(401).build();
         }
 
-        List<Palette> palettes = paletteRepository.findAll().stream()
+        List<PaletteDto> palettes = paletteRepository.findAll().stream()
                 .filter(p -> p.getUser().getId().equals(user.getId()))
+                .map(p -> new PaletteDto(
+                        p.getId(),
+                        p.getName(),
+                        List.of(p.getColors()),  // convert array to List
+                        p.getCreatedAt(),
+                        new UserDto(user.getId(), user.getUsername())
+                ))
                 .toList();
 
         return ResponseEntity.ok(palettes);

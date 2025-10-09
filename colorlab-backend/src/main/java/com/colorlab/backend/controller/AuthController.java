@@ -1,5 +1,6 @@
 package com.colorlab.backend.controller;
 
+import com.colorlab.backend.dto.UserDto;
 import com.colorlab.backend.model.User;
 import com.colorlab.backend.repository.UserRepository;
 import com.colorlab.backend.util.JwtUtil;
@@ -60,7 +61,10 @@ public class AuthController {
             String username = JwtUtil.validateTokenAndGetUsername(token);
 
             return userRepository.findByUsername(username)
-                    .<ResponseEntity<?>>map(user -> ResponseEntity.ok().body(user))
+                    .<ResponseEntity<?>>map(user -> {
+                        UserDto userDto = new UserDto(user.getId(), user.getUsername());
+                        return ResponseEntity.ok().body(userDto);
+                    })
                     .orElse(ResponseEntity.status(404).body("User not found."));
         }
 
