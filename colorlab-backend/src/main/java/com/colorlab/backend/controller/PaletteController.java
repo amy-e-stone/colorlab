@@ -58,5 +58,31 @@ public class PaletteController {
         return ResponseEntity.status(201).body(palette);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deletePalette(@PathVariable Long id, HttpServletRequest request) {
+        String token = request.getHeader("Authorization");
+        if (token == null || !token.startsWith("Bearer ")) {
+            return ResponseEntity.status(401).body("Missing or invalid token");
+        }
+
+        String username = JwtUtil.validateTokenAndGetUsername(token.substring(7));
+        Optional<User> userOpt = userRepository.findByUsername(username);
+        if (userOpt.isEmpty()) {
+            return ResponseEntity.status(404).body("User not found");
+        }
+
+        Optional<Palette> paletteOpt = paletteRepository.findById(id);
+        if (paletteOpt.isEmpty()) {
+            return ResponseEntity.status(404).body("Palette not found");
+        }
+
+        Palette palette = paletteOpt.get();
+        if (!palette.getUser().getId().equals(userOpt.get().getId())) {
+            return ResponseEntity.status(403).body("Not authorized to delete this palette");
+        }
+
+        paletteRepository.delete(palette);
+        return ResponseEntity.ok("Palette deleted successfully");
+    }
 }
 
