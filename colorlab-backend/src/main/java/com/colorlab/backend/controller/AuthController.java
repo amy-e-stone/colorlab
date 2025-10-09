@@ -3,6 +3,7 @@ package com.colorlab.backend.controller;
 import com.colorlab.backend.model.User;
 import com.colorlab.backend.repository.UserRepository;
 import com.colorlab.backend.util.JwtUtil;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -49,4 +50,21 @@ public class AuthController {
                 })
                 .orElse(ResponseEntity.status(404).body("User not found."));
     }
+
+    @GetMapping("/me")
+    public ResponseEntity<?> getCurrentUser(HttpServletRequest request) {
+        String authHeader = request.getHeader("Authorization");
+
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            String token = authHeader.substring(7);
+            String username = JwtUtil.validateTokenAndGetUsername(token);
+
+            return userRepository.findByUsername(username)
+                    .<ResponseEntity<?>>map(user -> ResponseEntity.ok().body(user))
+                    .orElse(ResponseEntity.status(404).body("User not found."));
+        }
+
+        return ResponseEntity.status(401).body("Unauthorized");
+    }
+
 }
