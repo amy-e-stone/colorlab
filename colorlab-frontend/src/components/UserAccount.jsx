@@ -41,8 +41,8 @@ export default function UserAccount() {
   if (loading) return <div className="p-10">Loading palettes...</div>;
 
   return (
-    <div className="flex flex-col items-center px-4 py-10 min-h-screen">
-      <h2 className="mb-6 text-2xl">Your Saved Palettes</h2>
+    <div className="flex flex-col items-center px-4 py-10 max-w-[870px] mx-auto">
+      <h2 className="mb-6 text-sm sm:text-xl">Your Saved Palettes</h2>
       {palettes.length === 0 ? (
         <p className="mb-6 text-gray-600">
           You haven't saved any palettes yet.
@@ -50,7 +50,7 @@ export default function UserAccount() {
       ) : (
         palettes.map((palette) => (
           <Card key={palette.id}>
-            <h3 className="mb-2 text-lg font-semibold">{palette.name}</h3>
+            <h3 className="mb-2 font-semibold md:text-lg">{palette.name}</h3>
             <ColorPalette colors={palette.colors} />
             <div className="mt-4">
               <Button
