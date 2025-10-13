@@ -4,11 +4,11 @@ import { hslaToHsva } from "@uiw/color-convert";
 
 export default function HslInput({ setHsva }) {
   return (
-    <div className="w-full max-w-xs sm:max-w-sm mx-auto">
+    <div className="w-full max-w-xs mx-auto sm:max-w-sm">
       <input
         name="hsl"
         type="text"
-        className="border px-2 py-1 mb-4 text-sm sm:text-base sm:px-3 sm:py-2"
+        className="px-2 py-1 mb-4 text-sm border sm:px-3 sm:py-2 sm:text-base"
         placeholder="H, S%, L%"
         onChange={(event) => {
           const val = event.target.value;

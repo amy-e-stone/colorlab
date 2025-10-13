@@ -14,7 +14,7 @@ export default function Button({ buttontext, onClick, to }) {
   return (
     <button
       onClick={handleClick}
-      className="px-3 py-1 bg-[#7209b7] text-gray-100 font-semibold rounded-full duration-300 hover:bg-[#4361ee] cursor-pointer"
+      className="px-3 py-1 bg-[#7209b7] text-gray-100 font-semibold rounded-full hover:bg-[#4361ee] duration-300 cursor-pointer"
     >
       {buttontext}
     </button>

@@ -5,7 +5,7 @@ export default function ColorPalette({ colors }) {
     <div className="flex flex-col items-center">
       {/* Generated color palette */}
       <div
-        className="rounded-md overflow-hidden w-full max-w-[400px]"
+        className="w-full max-w-[400px] rounded-md overflow-hidden"
         style={{ height: 120 }}
       >
         <div
@@ -27,7 +27,7 @@ export default function ColorPalette({ colors }) {
       {/* Hex values below */}
       {colors.length > 0 && (
         <div
-          className="grid mt-2 text-[10px] text-center text-gray-800 w-full max-w-[400px] lg:text-[14px]"
+          className="grid w-full max-w-[400px] mt-2 text-center text-[10px] text-gray-800 lg:text-[14px]"
           style={{ gridTemplateColumns: `repeat(${colors.length}, 1fr)` }}
         >
           {colors[0] && <p>{colors[0].toUpperCase()}</p>}

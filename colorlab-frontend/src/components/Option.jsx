@@ -2,7 +2,7 @@ export default function Option({ title, description, isSelected, onClick }) {
   return (
     <div
       role="button"
-      className={`cursor-pointer rounded-lg transition-colors p-1 ${
+      className={`p-1 transition-colors cursor-pointer rounded-lg ${
         isSelected ? "bg-gray-200" : "hover:bg-gray-100"
       }`}
       onClick={onClick}

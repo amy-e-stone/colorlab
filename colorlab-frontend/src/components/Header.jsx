@@ -4,8 +4,8 @@ import Button from "./Button";
 
 export default function Header() {
   return (
-    <header className="bg-gray-100 p-4">
-      <div className="flex justify-between items-center max-w-6xl mx-auto w-full">
+    <header className="p-4 bg-gray-100">
+      <div className="flex w-full max-w-6xl mx-auto justify-between items-center">
         {/* Unified Logo Wrapper */}
         <Link to="/ColorLab" className="block">
           <div className="sm:block hidden">
@@ -20,11 +20,11 @@ export default function Header() {
         <div className="flex space-x-2">
           <Link
             to="ColorLab/login"
-            className="w-20 sm:w-24 py-1 text-sm sm:text-base text-[#7209b7] hover:text-[#4361ee] cursor-pointer inline-flex items-center justify-center"
+            className="inline-flex w-20 py-1 items-center justify-center text-sm text-[#7209b7] hover:text-[#4361ee] cursor-pointer sm:w-24 sm:text-base"
           >
             Login
           </Link>
-          <div className="w-20 sm:w-24 text-sm sm:text-base">
+          <div className="text-sm w-20 sm:text-base sm:w-24">
             <Button buttontext="Register" to="ColorLab/register" />
           </div>
         </div>
