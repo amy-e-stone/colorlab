@@ -1,13 +1,26 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function LogIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: Handle login logic
-    console.log("Logging in with:", { email, password });
+    try {
+      const response = await axios.post("http://localhost:8080/auth/login", {
+        username: email,
+        password,
+      });
+      const data = response.data;
+      localStorage.setItem("token", data.token);
+      navigate("/account");
+    } catch (error) {
+      console.error(error);
+      alert("Invalid credentials. Please try again.");
+    }
   };
 
   return (

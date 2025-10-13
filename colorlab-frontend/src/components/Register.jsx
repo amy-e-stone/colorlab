@@ -1,18 +1,31 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirm) {
       alert("Passwords do not match.");
       return;
     }
-    // TODO: Handle registration logic
-    console.log("Registering:", { email, password });
+    try {
+      const response = await axios.post("http://localhost:8080/auth/register", {
+        username: email,
+        password,
+      });
+
+      alert("Registration successful! You can now log in.");
+      navigate("/login");
+    } catch (error) {
+      console.error(error);
+      alert("Registration failed. Please try again.");
+    }
   };
 
   return (
