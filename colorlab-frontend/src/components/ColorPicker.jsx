@@ -21,7 +21,7 @@ function ColorPicker({ hsva, setHsva }) {
         <HslInput setHsva={setHsva} />
         <div className="w-full max-w-[260px] mx-auto sm:max-w-[320px] md:max-w-[360px]">
           <Wheel
-            className="cursor-pointer"
+            className="cursor-pointer mx-auto"
             color={hsva}
             onChange={(color) => setHsva({ ...hsva, ...color.hsva })}
           />
