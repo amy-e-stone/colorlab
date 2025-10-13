@@ -18,8 +18,8 @@ export default function Register() {
   return (
     <div className="flex flex-col min-h-screen px-10">
       <main className="flex-grow">
-        <div className="max-w-md mx-auto mt-20 p-10 border border-gray-300 shadow-lg rounded-xl w-full">
-          <h2 className="text-md mb-4 sm:text-xl">Register</h2>
+        <div className=" w-full max-w-md mx-auto mt-20 p-10 border border-gray-300 shadow-lg rounded-xl">
+          <h2 className="mb-4 text-md sm:text-xl">Register</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <input
               type="email"
@@ -47,7 +47,7 @@ export default function Register() {
             />
             <button
               type="submit"
-              className="w-full bg-[#7209b7] text-white py-2 rounded hover:bg-[#4361ee]"
+              className="w-full py-2 bg-[#7209b7] text-white rounded hover:bg-[#4361ee]"
             >
               Register
             </button>

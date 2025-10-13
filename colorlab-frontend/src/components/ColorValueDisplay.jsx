@@ -4,9 +4,10 @@ import { hsvaToHex, hsvaToRgba, hsvaToHsla } from "@uiw/color-convert";
 
 export default function ColorDisplay({ hsva }) {
   return (
-    <div className="mt-4 mb-10 text-gray-800 text-left text-sm mx-auto w-fit">
+    <div className="w-fit mx-auto mt-4 mb-10 text-left text-sm text-gray-800">
       <p>
-        <span className="font-medium">HEX:</span> {hsvaToHex(hsva).toUpperCase()}
+        <span className="font-medium">HEX:</span>{" "}
+        {hsvaToHex(hsva).toUpperCase()}
       </p>
       <p>
         <span className="font-medium">RGB:</span>{" "}

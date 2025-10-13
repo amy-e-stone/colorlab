@@ -14,10 +14,10 @@ export default function PaletteOptions({
   return (
     <Card>
       <div className="text-center">
-        <h1 className="mb-6 sm:mb-8 mt-6 sm:mt-10 text-md sm:text-xl">
+        <h1 className="mb-6 mt-6 text-md sm:mb-8 sm:mt-10 sm:text-xl">
           Choose a palette option:
         </h1>
-        <div className="text-left text-sm sm:text-md space-y-1">
+        <div className="space-y-1 text-left text-sm sm:text-md">
           <Option
             title="Monochromatic"
             description="One hue with varying shades, tints, and tones"

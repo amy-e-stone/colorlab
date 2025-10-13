@@ -6,7 +6,7 @@ export default function ColorDisplay({ hsva }) {
   return (
     <div className="flex justify-center mt-5 mb-10">
       <div
-        className="w-[180px] sm:w-[320px] md:w-[360px] h-[200px] rounded"
+        className="h-[200px] w-[180px] rounded sm:w-[320px] md:w-[360px]"
         style={{
           background: hsvaToHex(hsva),
         }}
