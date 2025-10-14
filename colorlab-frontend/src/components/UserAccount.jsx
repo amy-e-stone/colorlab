@@ -41,6 +41,28 @@ export default function UserAccount() {
     navigate("/");
   };
 
+  const handleDelete = async (id) => {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+
+    try {
+      const response = await fetch(`http://localhost:8080/palettes/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        setPalettes((prev) => prev.filter((palette) => palette.id !== id));
+      } else {
+        console.error("Failed to delete palette");
+      }
+    } catch (err) {
+      console.error("Error:", err);
+    }
+  };
+
   if (loading) return <div className="p-10">Loading palettes...</div>;
 
   return (
