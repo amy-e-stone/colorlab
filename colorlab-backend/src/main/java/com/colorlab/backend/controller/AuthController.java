@@ -34,7 +34,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody User user) {
+    public ResponseEntity<?> login(@RequestBody User user) {
         return userRepository.findByUsername(user.getUsername())
                 .map(existingUser -> {
 
@@ -43,7 +43,7 @@ public class AuthController {
                     if (encoder.matches(user.getPassword(), existingUser.getPassword())) {
 
                         String token = JwtUtil.generateToken(existingUser.getUsername());
-                        return ResponseEntity.ok("Login successful. Token: " + token);
+                        return ResponseEntity.ok().body(java.util.Map.of("token", token));
 
                     } else {
                         return ResponseEntity.status(401).body("Invalid password.");
