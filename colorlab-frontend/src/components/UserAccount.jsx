@@ -10,32 +10,35 @@ export default function UserAccount() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // TODO: Fetch user's palettes from backend using stored JWT token
+    const fetchPalettes = async () => {
+      const token = localStorage.getItem("token");
+      if (!token) return;
 
-    // Simulate fetching with dummy palettes
-    setTimeout(() => {
-      setPalettes([
-        {
-          id: 1,
-          name: "Sunset",
-          colors: ["#ff5733", "#ff8d1a", "#ffd300", "#ffb347", "#ffcccb"],
-        },
-        {
-          id: 2,
-          name: "Ocean",
-          colors: ["#001f3f", "#0074D9", "#7FDBFF", "#39CCCC", "#3D9970"],
-        },
-      ]);
-      setLoading(false);
-    }, 500); // simulate network delay
+      try {
+        const response = await fetch("http://localhost:8080/palettes", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setPalettes(data);
+        } else {
+          console.error("Failed to fetch palettes");
+        }
+      } catch (err) {
+        console.error("Error:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPalettes();
   }, []);
 
-  const handleDelete = (id) => {
-    // TODO: Send DELETE request to backend to delete palette by ID
-  };
-
   const handleAddNew = () => {
-    navigate("/ColorLab");
+    navigate("/");
   };
 
   if (loading) return <div className="p-10">Loading palettes...</div>;
