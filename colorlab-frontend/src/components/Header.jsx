@@ -9,7 +9,7 @@ export default function Header() {
   const handleLogout = () => {
     localStorage.removeItem("token");
     alert("You have sucessfully logged out");
-    navigate("/");
+    navigate("login");
   };
 
   return (
