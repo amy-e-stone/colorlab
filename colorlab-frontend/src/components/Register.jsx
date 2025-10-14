@@ -29,7 +29,7 @@ export default function Register() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen px-10">
+    <div className="flex flex-col px-10">
       <main className="flex-grow">
         <div className=" w-full max-w-md mx-auto mt-20 p-10 border border-gray-300 shadow-lg rounded-xl">
           <h2 className="mb-4 text-md sm:text-xl">Register</h2>
