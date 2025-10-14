@@ -3,6 +3,7 @@ import Button from "./Button";
 import Card from "./Card";
 import ColorPalette from "./ColorPalette";
 import Option from "./Option";
+import { useState } from "react";
 
 export default function PaletteOptions({
   hsva,
@@ -11,6 +12,37 @@ export default function PaletteOptions({
   generatedColors,
   setGeneratedColors,
 }) {
+  const [paletteName, setPaletteName] = useState("");
+  const handleSave = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+    const payload = {
+      name: paletteName || "Untitled Palette",
+      colors: generatedColors,
+    };
+
+    try {
+      const res = await fetch("http://localhost:8080/palettes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        console.error("Failed to save palette");
+      } else {
+        alert("Palette saved!");
+      }
+    } catch (err) {
+      console.error("Error saving palette:", err);
+    }
+  };
+
+  const isLoggedIn = !!localStorage.getItem("token");
+
   return (
     <Card>
       <div className="text-center">
@@ -74,6 +106,21 @@ export default function PaletteOptions({
         <div className="mt-7">
           <ColorPalette colors={generatedColors} />
         </div>
+
+        {isLoggedIn && generatedColors.length > 0 && (
+          <div className="mt-15 space-y-2">
+            <div className="flex justify-center">
+              <input
+                type="text"
+                placeholder="Name your palette"
+                value={paletteName}
+                onChange={(e) => setPaletteName(e.target.value)}
+                className="flex px-2 py-1 mb-4 text-sm border sm:px-3 sm:py-2 sm:text-base"
+              />
+            </div>
+            <Button buttontext="Save Palette" onClick={handleSave} />
+          </div>
+        )}
       </div>
     </Card>
   );

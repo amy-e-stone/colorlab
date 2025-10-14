@@ -6,10 +6,12 @@ import App from "./App.jsx";
 import LogIn from "./components/LogIn.jsx";
 import Register from "./components/Register.jsx";
 import Home from "./components/Home.jsx";
+import PrivateRoute from "./components/PrivateRoute";
+import UserAccount from "./components/UserAccount";
 
 const appRouter = createBrowserRouter([
   {
-    path: "ColorLab/",
+    path: "/",
     element: <App />,
     children: [
       {
@@ -17,16 +19,24 @@ const appRouter = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "ColorLab/home",
+        path: "home",
         element: <Home />,
       },
       {
-        path: "ColorLab/login",
+        path: "login",
         element: <LogIn />,
       },
       {
-        path: "ColorLab/register",
+        path: "register",
         element: <Register />,
+      },
+      {
+        path: "account",
+        element: (
+          <PrivateRoute>
+            <UserAccount />
+          </PrivateRoute>
+        ),
       },
     ],
   },
