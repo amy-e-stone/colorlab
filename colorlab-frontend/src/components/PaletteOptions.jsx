@@ -22,14 +22,18 @@ export default function PaletteOptions({
     };
 
     try {
-      const res = await fetch("http://localhost:8080/palettes", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(payload),
-      });
+      // const res = await fetch("http://localhost:8080/palettes", {
+      const res = await fetch(
+        "https://colorlab-3c35c0233d02.herokuapp.com/palettes",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(payload),
+        }
+      );
 
       if (!res.ok) {
         console.error("Failed to save palette");

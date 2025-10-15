@@ -15,11 +15,15 @@ export default function UserAccount() {
       if (!token) return;
 
       try {
-        const response = await fetch("http://localhost:8080/palettes", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        // const response = await fetch("http://localhost:8080/palettes", {
+        const response = await fetch(
+          "https://colorlab-3c35c0233d02.herokuapp.com/palettes",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         if (response.ok) {
           const data = await response.json();
@@ -46,12 +50,16 @@ export default function UserAccount() {
     if (!token) return;
 
     try {
-      const response = await fetch(`http://localhost:8080/palettes/${id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      //const response = await fetch(`http://localhost:8080/palettes/${id}`, {
+      const response = await fetch(
+        `https://colorlab-3c35c0233d02.herokuapp.com/palettes/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       if (response.ok) {
         setPalettes((prev) => prev.filter((palette) => palette.id !== id));
