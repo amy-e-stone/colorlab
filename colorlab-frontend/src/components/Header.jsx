@@ -26,20 +26,20 @@ export default function Header() {
         </Link>
 
         {/* Login and Register buttons (or Account and Logout if logged in) */}
-        <div className="flex space-x-2">
+        <div className="flex items-center">
           {isLoggedIn ? (
             <>
               {/* Account button */}
               <Link
                 to="/account"
-                className="inline-flex w-20 py-1 items-center justify-center text-sm text-[#7209b7] hover:text-[#4361ee] cursor-pointer sm:w-24 sm:text-base"
+                className="inline-flex items-center justify-center px-3 py-1 text-sm text-[#7209b7] hover:text-[#4361ee] cursor-pointer sm:w-24 sm:text-base"
               >
                 Account
               </Link>
               {/* Logout button */}
               <button
                 onClick={handleLogout}
-                className="inline-flex w-20 py-1 items-center justify-center text-sm text-[#7209b7] hover:text-[#4361ee] cursor-pointer sm:w-24 sm:text-base"
+                className="inline-flex items-center justify-center px-3 py-1 text-sm text-[#7209b7] hover:text-[#4361ee] cursor-pointer sm:w-24 sm:text-base"
               >
                 Logout
               </button>
@@ -49,7 +49,7 @@ export default function Header() {
               {/* Login button */}
               <Link
                 to="login"
-                className="inline-flex w-20 py-1 items-center justify-center text-sm text-[#7209b7] hover:text-[#4361ee] cursor-pointer sm:w-24 sm:text-base"
+                className="inline-flex items-center justify-center px-3 py-1 text-[#7209b7] hover:text-[#4361ee] cursor-pointer sm:w-24 sm:text-base"
               >
                 Login
               </Link>

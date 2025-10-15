@@ -67,7 +67,7 @@ export default function UserAccount() {
 
   return (
     <div className="flex flex-col items-center px-4 py-10 max-w-[870px] mx-auto">
-      <h2 className="mb-6 text-sm sm:text-xl">Your Saved Palettes</h2>
+      <h2 className="mb-6 sm:text-xl">Your Saved Palettes</h2>
       {palettes.length === 0 ? (
         <p className="mb-6 text-gray-600">
           You haven't saved any palettes yet.
@@ -86,7 +86,7 @@ export default function UserAccount() {
           </Card>
         ))
       )}
-      <div className="mt-6">
+      <div className="mt-6 mb-15">
         <Button buttontext="Add New Palette" onClick={handleAddNew} />
       </div>
     </div>
