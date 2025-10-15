@@ -9,38 +9,43 @@ import Home from "./components/Home.jsx";
 import PrivateRoute from "./components/PrivateRoute";
 import UserAccount from "./components/UserAccount";
 
-const appRouter = createBrowserRouter([
+const appRouter = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <App />,
+      children: [
+        {
+          index: true,
+          element: <Home />,
+        },
+        {
+          path: "home",
+          element: <Home />,
+        },
+        {
+          path: "login",
+          element: <LogIn />,
+        },
+        {
+          path: "register",
+          element: <Register />,
+        },
+        {
+          path: "account",
+          element: (
+            <PrivateRoute>
+              <UserAccount />
+            </PrivateRoute>
+          ),
+        },
+      ],
+    },
+  ],
   {
-    path: "/",
-    element: <App />,
-    children: [
-      {
-        index: true,
-        element: <Home />,
-      },
-      {
-        path: "home",
-        element: <Home />,
-      },
-      {
-        path: "login",
-        element: <LogIn />,
-      },
-      {
-        path: "register",
-        element: <Register />,
-      },
-      {
-        path: "account",
-        element: (
-          <PrivateRoute>
-            <UserAccount />
-          </PrivateRoute>
-        ),
-      },
-    ],
-  },
-]);
+    basename: "/colorlab",
+  }
+);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
