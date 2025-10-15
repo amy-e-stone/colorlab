@@ -13,7 +13,7 @@ function ColorPicker({ hsva, setHsva }) {
   return (
     <Card>
       <div className="text-center">
-        <h1 className="my-6 text-sm sm:my-10 sm:text-xl">
+        <h1 className="my-6 sm:my-10 sm:text-xl">
           Pick a color to get started!
         </h1>
         <HexInput setHsva={setHsva} />
