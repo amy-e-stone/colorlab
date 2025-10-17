@@ -1,7 +1,19 @@
-## Live Demo
-Frontend: [https://amy-e-stone.github.io/colorlab](https://amy-e-stone.github.io/colorlab)
+# ColorLab
 
-## Backend
-Built with Spring Boot + PostgreSQL  
-Deployed on Heroku and secured with JWT  
-(Not directly browsable — API accessed via frontend)
+A full-stack color palette generator built with React (frontend) and Spring Boot (backend).
+
+## Live Demo
+- [https://amy-e-stone.github.io/colorlab](https://amy-e-stone.github.io/colorlab)
+
+## Tech Stack
+- Frontend: React, Tailwind CSS, Vite, GitHub Pages
+- Backend: Spring Boot, PostgreSQL, Heroku
+
+## Features
+- Generate color palettes
+- Save palettes to user account
+- User login/register with JWT
+- Hosted on GitHub Pages and Heroku
+
+## License
+MIT
