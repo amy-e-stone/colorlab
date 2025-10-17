@@ -22,24 +22,18 @@ export default function PaletteOptions({
     };
 
     try {
-      // const res = await fetch("http://localhost:8080/palettes", {
-      const res = await fetch(
+      // const res = await axios.post("http://localhost:8080/palettes", payload, {
+      const res = await axios.post(
         "https://colorlab-3c35c0233d02.herokuapp.com/palettes",
+        payload,
         {
-          method: "POST",
           headers: {
-            "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify(payload),
         }
       );
-
-      if (!res.ok) {
-        console.error("Failed to save palette");
-      } else {
-        alert("Palette saved!");
-      }
+      alert("Palette saved!");
     } catch (err) {
       console.error("Error saving palette:", err);
     }
