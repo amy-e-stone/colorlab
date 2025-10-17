@@ -6,18 +6,15 @@ export default function LogIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const BASE_URL = import.meta.env.VITE_API_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // const response = await axios.post("http://localhost:8080/auth/login", {
-      const response = await axios.post(
-        "https://colorlab-3c35c0233d02.herokuapp.com/auth/login",
-        {
-          username: email,
-          password,
-        }
-      );
+      const response = await axios.post(`${BASE_URL}/auth/login`, {
+        username: email,
+        password,
+      });
       const data = response.data;
       localStorage.setItem("token", data.token);
       navigate("/account");

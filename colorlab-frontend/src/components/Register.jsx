@@ -7,6 +7,7 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const navigate = useNavigate();
+  const BASE_URL = import.meta.env.VITE_API_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,14 +16,10 @@ export default function Register() {
       return;
     }
     try {
-      // const response = await axios.post("http://localhost:8080/auth/register", {
-      const response = await axios.post(
-        "https://colorlab-3c35c0233d02.herokuapp.com/auth/register",
-        {
-          username: email,
-          password,
-        }
-      );
+      const response = await axios.post(`${BASE_URL}/auth/register`, {
+        username: email,
+        password,
+      });
 
       alert("Registration successful! You can now log in.");
       navigate("/login");

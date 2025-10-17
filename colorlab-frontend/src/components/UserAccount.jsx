@@ -3,11 +3,13 @@ import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import Card from "../components/Card";
 import ColorPalette from "../components/ColorPalette";
+import axios from "axios";
 
 export default function UserAccount() {
   const [palettes, setPalettes] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const BASE_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchPalettes = async () => {
@@ -15,15 +17,11 @@ export default function UserAccount() {
       if (!token) return;
 
       try {
-        // const response = await axios.get("http://localhost:8080/palettes", {
-        const response = await axios.get(
-          "https://colorlab-3c35c0233d02.herokuapp.com/palettes",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get(`${BASE_URL}/palettes`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         setPalettes(response.data);
       } catch (err) {
         console.error("Error:", err);
@@ -44,15 +42,11 @@ export default function UserAccount() {
     if (!token) return;
 
     try {
-      // const response = await axios.delete(`http://localhost:8080/palettes/${id}`, {
-      const response = await axios.delete(
-        `https://colorlab-3c35c0233d02.herokuapp.com/palettes/${id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await axios.delete(`${BASE_URL}/palettes/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       if (response.status === 200) {
         setPalettes((prev) => prev.filter((palette) => palette.id !== id));
       }
