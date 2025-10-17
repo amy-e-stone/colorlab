@@ -15,8 +15,8 @@ export default function UserAccount() {
       if (!token) return;
 
       try {
-        // const response = await fetch("http://localhost:8080/palettes", {
-        const response = await fetch(
+        // const response = await axios.get("http://localhost:8080/palettes", {
+        const response = await axios.get(
           "https://colorlab-3c35c0233d02.herokuapp.com/palettes",
           {
             headers: {
@@ -24,13 +24,7 @@ export default function UserAccount() {
             },
           }
         );
-
-        if (response.ok) {
-          const data = await response.json();
-          setPalettes(data);
-        } else {
-          console.error("Failed to fetch palettes");
-        }
+        setPalettes(response.data);
       } catch (err) {
         console.error("Error:", err);
       } finally {
@@ -50,21 +44,17 @@ export default function UserAccount() {
     if (!token) return;
 
     try {
-      //const response = await fetch(`http://localhost:8080/palettes/${id}`, {
-      const response = await fetch(
+      // const response = await axios.delete(`http://localhost:8080/palettes/${id}`, {
+      const response = await axios.delete(
         `https://colorlab-3c35c0233d02.herokuapp.com/palettes/${id}`,
         {
-          method: "DELETE",
           headers: {
             Authorization: `Bearer ${token}`,
           },
         }
       );
-
-      if (response.ok) {
+      if (response.status === 200) {
         setPalettes((prev) => prev.filter((palette) => palette.id !== id));
-      } else {
-        console.error("Failed to delete palette");
       }
     } catch (err) {
       console.error("Error:", err);
