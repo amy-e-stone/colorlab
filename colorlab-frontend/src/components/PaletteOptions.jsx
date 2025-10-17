@@ -4,6 +4,8 @@ import Card from "./Card";
 import ColorPalette from "./ColorPalette";
 import Option from "./Option";
 import { useState } from "react";
+import axios from "axios";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 export default function PaletteOptions({
   hsva,
@@ -22,17 +24,12 @@ export default function PaletteOptions({
     };
 
     try {
-      // const res = await axios.post("http://localhost:8080/palettes", payload, {
-      const res = await axios.post(
-        "https://colorlab-3c35c0233d02.herokuapp.com/palettes",
-        payload,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const res = await axios.post(`${BASE_URL}/palettes`, payload, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
       alert("Palette saved!");
     } catch (err) {
       console.error("Error saving palette:", err);
